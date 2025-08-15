@@ -13,7 +13,6 @@
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      transition: background-color 0.2s;
       font-family: Arial, sans-serif;
     }
   </style>
@@ -31,13 +30,15 @@
       let count = 0;
       const interval = setInterval(() => {
         document.body.style.backgroundColor =
-          document.body.style.backgroundColor === 'rgba(255,0,0,0.5)' ? 'transparent' : 'rgba(255,0,0,0.5)';
+          document.body.style.backgroundColor === 'rgba(255,0,0,0.5)' 
+            ? 'transparent' 
+            : 'rgba(255,0,0,0.5)';
         count++;
         if (count >= 20) {
           clearInterval(interval);
           document.body.style.backgroundColor = 'transparent';
         }
-      }, 200);
+      }, 100); // szybsze miganie dla mocniejszego efektu
     }
 
     function showScareMessage() {
@@ -58,31 +59,24 @@
     }
 
     function triggerScare() {
-      // Ustaw tło od razu przy starcie odtwarzania
+      // Od razu ustaw tło
       document.body.style.backgroundImage = "url('jumpscare/jps.jpg')";
       document.body.style.backgroundSize = 'cover';
       document.body.style.backgroundPosition = 'center';
       document.body.style.backgroundRepeat = 'no-repeat';
 
-      // Odtwarzaj dźwięk
-      sound.play().catch((err) => {
+      // Od razu odtwarzaj dźwięk
+      sound.play().catch(err => {
         console.error('Nie udało się odtworzyć dźwięku:', err);
       });
 
-      // Po zakończeniu dźwięku rozpocznij miganie
-      sound.addEventListener('ended', () => {
-        startFlashing();
-      }, { once: true });
+      // Natychmiastowe miganie
+      startFlashing();
 
-      // Po 2 sekundach pokaż komunikat
+      // Napis po 2 sekundach
       setTimeout(() => {
         showScareMessage();
       }, 2000);
-
-      // Po 5 sekundach (2s + 3s) przekieruj do index.html
-      setTimeout(() => {
-        window.location.href = 'index.html';
-      }, 5000);
     }
 
     window.onload = () => {
