@@ -86,33 +86,34 @@
       else if (el.msRequestFullscreen) await el.msRequestFullscreen();
     }
 
-    async function startPrank() {
-      startBtn.style.display = 'none';
-      prankScreen.style.display = 'block';
-      await goFullScreen();
+async function startPrank() {
+  startBtn.style.display = 'none';
+  prankScreen.style.display = 'block';
+  await goFullScreen();
 
-      try {
-        await glassSound.play();
-      } catch (err) {
-        console.warn("Błąd odtwarzania dźwięku:", err);
-      }
+  try {
+    await glassSound.play();
+  } catch (err) {
+    console.warn("Błąd odtwarzania dźwięku:", err);
+  }
 
-      // Pokaż napis po 3 sekundach od kliknięcia
-      setTimeout(() => {
-        infoText.style.display = 'block';
-      }, 3000);
+  // Pokaż napis po 3 sekundach od kliknięcia
+  setTimeout(() => {
+    infoText.style.display = 'block';
+  }, 3000);
 
-      gotPranked = true;
-    }
+  // Automatyczne przekierowanie po 5 sekundach od startu
+  setTimeout(() => {
+    window.location.href = 'straszak.html';
+  }, 5000);
+}
 
-    startBtn.addEventListener('click', startPrank);
+startBtn.addEventListener('click', startPrank);
 
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Enter' && gotPranked) {
-        window.location.href = 'straszak.html';
-      }
-    });
+  }
+});
   </script>
 
 </body>
 </html>
+
