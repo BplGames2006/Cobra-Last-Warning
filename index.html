@@ -5,75 +5,35 @@
   <title>Clicker</title>
   <style>
     body {
-      background-color: #8e44ad; /* Fioletowe tło na całej stronie */
+      background-color: #8e44ad; /* Fioletowe tło */
       font-family: sans-serif;
-      text-align: center;
-      color: white;
-      padding-top: 40px;
-    }
-    h1 {
-      font-size: 60px;
-      margin-bottom: 30px;
-      font-weight: bold;
+      display: flex;
+      justify-content: center;  /* Wyśrodkowanie poziome */
+      align-items: center;      /* Wyśrodkowanie pionowe */
+      height: 100vh;            /* Wysokość całego ekranu */
+      margin: 0;
     }
     button {
-      display: block;
-      margin: 10px auto;
       padding: 20px 40px;
       font-size: 20px;
-      border: 2px solid black; /* Czarna ramka */
+      border: 2px solid black;  /* Czarna ramka */
       border-radius: 15px;
       cursor: pointer;
       font-weight: bold;
-      width: 300px;
+      background-color: #ff9800; /* Pomarańczowy */
+      color: white;
+      transition: transform 0.2s ease;
     }
-    .click { background-color: #4CAF50; color: white; }
-    .rose { background-color: #f44336; color: white; }
-    .corgi { background-color: #bdbdbd; color: white; }
-    .confetti { background-color: #03a9f4; color: white; }
-    .donut { background-color: #e91e63; color: white; }
-    .swan { background-color: #9c27b0; color: white; }
-    .car { background-color: #ff9800; color: white; }
-    .link { background-color: black; color: white; font-size: 16px; padding: 10px 20px; }
+    button:hover {
+      transform: scale(1.05); /* Lekki efekt powiększenia przy najechaniu */
+    }
   </style>
 </head>
 <body>
-  <h1 id="counter">999999999</h1>
 
-  <button class="click" onclick="changeCount(1)">👆 Moje Kliknięcie</button>
-  <button class="rose" onclick="changeCount(-10)">🌹 Róża (-10)</button>
-  <button class="corgi" onclick="resetCount()">🐶 Corgi = Reset</button>
-  <button class="confetti" onclick="changeCount(-1)">🎉 Konfetti – Cofnij</button>
-  <button class="donut" onclick="changeCount(-500)">🍩 Pączek (-500)</button>
-  <button class="swan" onclick="changeCount(-1000000000)">🦢 Łabędź (-1 MLD)</button>
-  <button class="car" onclick="window.location.href='prank.html'">🚗 Samochód – Rozwalam Monitor</button>
+  <button onclick="window.location.href='prank.html'">
+    KLIKNIJ W TO NIGERZE!
+  </button>
 
-  <script>
-    let count = parseInt(localStorage.getItem("counter") || "999999813");
-    const counterElement = document.getElementById('counter');
-
-    function updateDisplay() {
-      counterElement.textContent = count.toLocaleString('pl-PL');
-      localStorage.setItem("counter", count);
-    }
-
-    function changeCount(amount) {
-      count = Math.max(0, count + amount);
-      updateDisplay();
-    }
-
-    function resetCount() {
-      count = 0;
-      updateDisplay();
-    }
-
-    document.addEventListener('keydown', function(e) {
-      if (e.shiftKey && e.key === 'D') {
-        window.location.href = 'dodaj.html';
-      }
-    });
-
-    updateDisplay();
-  </script>
 </body>
 </html>
