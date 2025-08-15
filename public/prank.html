@@ -47,19 +47,22 @@
       user-select: none;
     }
 
-    #prankScreen {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-image: url('/zdjęcia/ekran.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      z-index: 1;
-    }
-  </style>
+<div id="prankScreen"></div>
+
+  #prankScreen {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('/zdjecia/ekran.jpg'); /* absolutna ścieżka od root */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1;
+  }
+</style>
+
 </head>
 <body>
 
@@ -109,3 +112,4 @@
 
 </body>
 </html>
+
