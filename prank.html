@@ -53,7 +53,7 @@
       top: 0; left: 0;
       width: 100vw;
       height: 100vh;
-      background-image: url('zdjęcia/ekran.jpg');
+      background-image: url('/zdjęcia/ekran.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -68,7 +68,7 @@
   <div id="prankScreen"></div>
 
   <audio id="glassSound" preload="auto">
-    <source src="audio/glass.mp3" type="audio/mpeg" />
+    <source src="/audio/glass.mp3" type="audio/mpeg" />
   </audio>
 
   <script>
@@ -95,14 +95,12 @@
         console.warn("Błąd odtwarzania dźwięku:", err);
       }
 
-      // Pokaż napis po 3 sekundach
       setTimeout(() => {
         infoText.style.display = 'block';
       }, 3000);
 
-      // Automatyczne przekierowanie po 5 sekundach
       setTimeout(() => {
-        window.location.href = 'straszak.html';
+        window.location.href = '/Straszak.html';
       }, 5000);
     }
 
