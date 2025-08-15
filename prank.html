@@ -64,7 +64,7 @@
 <body>
 
   <button id="startBtn">Chcesz Wybaczenia? Kliknij w ten przycisk</button>
-  <div id="infoText">Teraz Wcisnij ENTER, i nie bądź pedałem</div>
+  <div id="infoText">Nie uciekaj... 😈</div>
   <div id="prankScreen"></div>
 
   <audio id="glassSound" preload="auto">
@@ -77,8 +77,6 @@
     const glassSound = document.getElementById('glassSound');
     const infoText = document.getElementById('infoText');
 
-    let gotPranked = false;
-
     async function goFullScreen() {
       const el = document.documentElement;
       if (el.requestFullscreen) await el.requestFullscreen();
@@ -86,34 +84,30 @@
       else if (el.msRequestFullscreen) await el.msRequestFullscreen();
     }
 
-async function startPrank() {
-  startBtn.style.display = 'none';
-  prankScreen.style.display = 'block';
-  await goFullScreen();
+    async function startPrank() {
+      startBtn.style.display = 'none';
+      prankScreen.style.display = 'block';
+      await goFullScreen();
 
-  try {
-    await glassSound.play();
-  } catch (err) {
-    console.warn("Błąd odtwarzania dźwięku:", err);
-  }
+      try {
+        await glassSound.play();
+      } catch (err) {
+        console.warn("Błąd odtwarzania dźwięku:", err);
+      }
 
-  // Pokaż napis po 3 sekundach od kliknięcia
-  setTimeout(() => {
-    infoText.style.display = 'block';
-  }, 3000);
+      // Pokaż napis po 3 sekundach
+      setTimeout(() => {
+        infoText.style.display = 'block';
+      }, 3000);
 
-  // Automatyczne przekierowanie po 5 sekundach od startu
-  setTimeout(() => {
-    window.location.href = 'straszak.html';
-  }, 5000);
-}
+      // Automatyczne przekierowanie po 5 sekundach
+      setTimeout(() => {
+        window.location.href = 'straszak.html';
+      }, 5000);
+    }
 
-startBtn.addEventListener('click', startPrank);
-
-  }
-});
+    startBtn.addEventListener('click', startPrank);
   </script>
 
 </body>
 </html>
-
