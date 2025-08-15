@@ -19,9 +19,7 @@
 </head>
 <body>
 
-  <audio id="screamSound" preload="auto">
-    <source src="audio/krzyk.mp3" type="audio/mpeg" />
-  </audio>
+  <audio id="screamSound" preload="auto"></audio>
 
   <script>
     const sound = document.getElementById('screamSound');
@@ -38,7 +36,7 @@
           clearInterval(interval);
           document.body.style.backgroundColor = 'transparent';
         }
-      }, 100); // szybsze miganie dla mocniejszego efektu
+      }, 100);
     }
 
     function showScareMessage() {
@@ -58,30 +56,37 @@
       document.body.appendChild(msg);
     }
 
-    function triggerScare() {
-      // Od razu ustaw tło
-      document.body.style.backgroundImage = "url('jumpscare/jps.jpg')";
-      document.body.style.backgroundSize = 'cover';
-      document.body.style.backgroundPosition = 'center';
-      document.body.style.backgroundRepeat = 'no-repeat';
+    async function triggerScare() {
+      // Sprawdzanie obrazu
+      const img = new Image();
+      img.src = 'jumpscare/jps.jpg';
+      img.onload = () => {
+        document.body.style.backgroundImage = `url('${img.src}')`;
+      };
+      img.onerror = () => {
+        document.body.style.backgroundColor = 'red';
+        console.warn("Nie znaleziono obrazu jumpscare");
+      };
 
-      // Od razu odtwarzaj dźwięk
-      sound.play().catch(err => {
-        console.error('Nie udało się odtworzyć dźwięku:', err);
-      });
+      // Sprawdzanie i ładowanie dźwięku
+      try {
+        const res = await fetch('audio/krzyk.mp3');
+        if (res.ok) {
+          sound.src = 'audio/krzyk.mp3';
+          sound.play().catch(err => console.error("Błąd odtwarzania dźwięku:", err));
+        } else {
+          console.warn("Nie znaleziono pliku dźwiękowego");
+        }
+      } catch (err) {
+        console.warn("Błąd ładowania dźwięku:", err);
+      }
 
-      // Natychmiastowe miganie
+      // Start migania i napis
       startFlashing();
-
-      // Napis po 2 sekundach
-      setTimeout(() => {
-        showScareMessage();
-      }, 2000);
+      setTimeout(showScareMessage, 2000);
     }
 
-    window.onload = () => {
-      triggerScare();
-    };
+    window.onload = triggerScare;
   </script>
 
 </body>
