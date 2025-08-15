@@ -1,2 +1,2 @@
 # GabriWika & Cobra
-Some of the one of the pathetic people
+LAST CHANCE COBRA OR YOUR GIRL WILL BURN IN HELL
